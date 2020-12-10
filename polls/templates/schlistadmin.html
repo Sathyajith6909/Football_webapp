@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Football Fever</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    
+    a.button::before {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-box-shadow: #959595 0 2px 5px;
+    -moz-box-shadow: #959595 0 2px 5px;
+    border-radius: 3px;
+    box-shadow: #959595 0 2px 5px;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    padding: 2px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+    
+a.button:active::before { padding: 1px 0 0; }
+
+/**
+ * Grey
+ */
+a.button {
+    -moz-box-shadow: inset 0 0 0 1px #63ad0d;
+    -webkit-box-shadow: inset 0 0 0 1px #63ad0d;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background: #eee;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#eee), to(#e2e2e2));
+    background: -moz-linear-gradient(#eee, #e2e2e2);
+    background: linear-gradient(#eee, #e2e2e2);
+    border: solid 1px #d0d0d0;
+    border-bottom: solid 3px #b2b1b1;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px #f5f5f5;
+    color: #555;
+    display: inline-block;
+    font: bold 12px Arial, Helvetica, Clean, sans-serif;
+    margin: 0 25px 25px 0;
+    padding: 10px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fafafa; }
+    
+a.button:hover {
+    background: #e4e4e4;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#e4e4e4), to(#ededed));
+    background: -moz-linear-gradient(#e4e4e4, #ededed);
+    background: linear-gradient(#e4e4e4, #ededed);
+    border: solid 1px #c2c2c2;
+    border-bottom: solid 3px #b2b1b1;
+    box-shadow: inset 0 0 0 1px #efefef; }
+    
+a.button:active {
+    background: #dfdfdf;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#dfdfdf), to(#e3e3e3));
+    background: -moz-linear-gradient(#dfdfdf, #e3e3e3);
+    background: linear-gradient(#dfdfdf, #e3e3e3);
+    border: solid 1px #959595;
+    box-shadow: inset 0 10px 15px 0 #c4c4c4;
+    top:2px;}
+
+
+/**
+ * Yahoo - Special Edition
+ */
+a.button.yahoo {
+    background: #9fd6fa;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#9fd6fa), to(#6bb9f7));
+    background: -moz-linear-gradient(#9fd6fa, #6bb9f7);
+    background: linear-gradient(#9fd6fa, #6bb9f7);
+    border: solid 1px #72bdf4;
+    border-bottom: solid 3px #4a9de1;
+    box-shadow: inset 0 0 0 1px #bfe4fc;
+    color: #fff;
+    text-shadow: 0 1px 0 #4598f3; }
+    
+a.button.yahoo:hover {
+    background: #6bb9f7;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#6bb9f7), to(#9fd6fa));
+    background: -moz-linear-gradient(#6bb9f7, #9fd6fa);
+    background: linear-gradient(#6bb9f7, #9fd6fa);
+    border: solid 1px #72bdf4;
+    border-bottom: solid 3px #4a9de1;
+    box-shadow: inset 0 0 0 1px #bfe4fc; }
+    
+a.button.yahoo:active {
+    background: #6bb9f7;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#6bb9f7), to(#9fd6fa));
+    background: -moz-linear-gradient(#6bb9f7, #9fd6fa);
+    background: linear-gradient(#6bb9f7, #9fd6fa);
+    border: solid 1px #72bdf4;
+    box-shadow: inset 0 10px 15px 0 #50aaf3; }
+
+    
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Match Schedule</h2>
+  <p>Please refer to the match schedule given below</p>  
+  
+  
+  <a href="/polls/logout" class="button yahoo pull-right" >Logout</a>
+  <br><br>
+
+  <a href="/polls/squader" class="button yahoo">View Squad</a>
+  <br><br>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Match Number</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Time Schedule</th>
+        <th>Team A Score</th>
+        <th>Team B Score</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for client in blogs %}
+      <tr>
+        <td>{{client.id}}</td>
+        <td>{{client.team_a.TeamName}}</td>
+        <td>{{client.team_b.TeamName}}</td>
+        <td>{{client.venue}}</td>
+        <td>{{client.date}}</td>
+        <td>{{client.time}}</td>
+        <td>{{client.team_a_points}}</td>
+        <td>{{client.team_b_points}}</td>
+        <td><a href="/polls/update_u/{{client.id}}" class="button yahoo">UPDATE</a></td>
+        
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if blogs.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ blogs.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+        </span>
+
+        {% if blogs.has_next %}
+            <a href="?page={{ blogs.next_page_number }}">next</a>
+            <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</body>
+</html>

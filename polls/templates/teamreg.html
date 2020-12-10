@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Football Fever</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<h2 class="text-center text-primary">Login To Football Tournament</h2><br><br>
+
+	<p style="margin-left: 50px; color: red;">Match Schedule will be prepared only after 10 individual Teams register to the Tournament</p>
+	<br><br>
+
+	<div style="width: 500px; margin-left: 50px;">
+		
+					
+						<form method="POST" action="/polls/teamrg">
+							{%csrf_token%}
+
+							<span>Team Name</span>
+							
+								{{form.TeamNameform}}<br><br>
+
+
+								<span>Team Players</span>
+								{{form.PlayerNameform}}
+
+								<br><br>
+
+
+								<span>Coach's Name</span>
+								{{form.CoachNameform}}
+
+								<br><br>
+
+
+								<span>Manager's Name</span>
+								{{form.ManagerNameform}}
+
+								<br><br>
+
+								
+								
+											<input type="submit" value="Register Team">
+									
+										
+									
+						</form>
+	</div>
+
+</body>
+</html>

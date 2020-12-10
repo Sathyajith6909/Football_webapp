@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Match Schedule</h2>
+  <p style="color: red">Number of Registrations limit Reached. Refer the Table to find the Tournament Schedule</p>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Match Number</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Time Schedule</th>
+        <th>Team A Score</th>
+        <th>Team B Score</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for client in blogs %}
+      <tr>
+        <td>{{client.id}}</td>
+        <td>{{client.team_a.TeamName}}</td>
+        <td>{{client.team_b.TeamName}}</td>
+        <td>{{client.venue}}</td>
+        <td>{{client.date}}</td>
+        <td>{{client.time}}</td>
+        <td>{{client.team_a_points}}</td>
+        <td>{{client.team_b_points}}</td>
+        
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if blogs.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ blogs.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+        </span>
+
+        {% if blogs.has_next %}
+            <a href="?page={{ blogs.next_page_number }}">next</a>
+            <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</body>
+</html>
